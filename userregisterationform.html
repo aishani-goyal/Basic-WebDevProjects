@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaultofCodes - User Registration</title>
+    <style>
+        body {
+            background-color: 	#28282B;
+            font-family: Arial, sans-serif;
+        }
+
+        .flex-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            
+        }
+
+        h1 {
+            color: 	#000000;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            margin-right: 2px;
+        }
+
+        .gender-labels {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="submit"] {
+            background-color: #DE3163;
+            margin: 5px; 
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            
+        }
+
+        input[type="submit"]:hover {
+            background-color: #C41E3A;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <img src="Images/VOC_logo.JPG" alt="VaultofCodes Logo" style="display: block; margin: 0 auto; width:100px; height: 100px">
+        <h1>User Registration Form</h1>
+        <form id="registrationForm">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="pass">Password</label>
+            <input type="password" id="pass" name="pass" required>
+
+            <label for="repass">Confirm Password</label>
+            <input type="password" id="repass" name="repass" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label>Gender</label>
+            <div class="gender-labels">
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Other</label>
+            </div>
+
+            <label>
+                <input type="checkbox" required> I agree to the Terms and Conditions
+                <a href="terms_and_conditions.html" target="_blank">Terms and Conditions</a>
+            </label>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        <p id="confirmationMessage" style="display: none; text-align: center;">Form submitted successfully!</p>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect form data
+            var formData = {
+                fullname: document.getElementById("fullname").value,
+                email: document.getElementById("email").value,
+                pass: document.getElementById("pass").value,
+                repass: document.getElementById("repass").value,
+                dob: document.getElementById("dob").value,
+                gender: document.querySelector('input[name="gender"]:checked').value,
+                terms: document.querySelector('input[type="checkbox"]').checked
+            };
+          
+            localStorage.setItem("userData", JSON.stringify(formData));
+            
+            document.getElementById("registrationForm").style.display = "none";
+            document.getElementById("confirmationMessage").style.display = "block";
+        });
+    </script>
+</body>
+
+</html>
